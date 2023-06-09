@@ -17,7 +17,6 @@ let undefined; //Jeśli zmienna nie posiada przypisanej wartości
 null;
 
 console.log(typeof number);
-*/
 
 //Math operators
 const now = 2037;
@@ -49,3 +48,22 @@ console.log(x, y);
 
 const averageAge = (jonasAge + saraAge) / 2;
 console.log(averageAge);
+
+*/
+
+const firstName = "Jonas";
+const job = "teacher";
+const birthYear = 1991;
+const year = 2023;
+
+const jonas =
+  "I'm " + firstName + ", a " + (year - birthYear) + " years old " + job + "!";
+console.log(jonas);
+
+const jonasNew = `I'm ${firstName}, a ${year - birthYear} years old ${job}!`;
+console.log(jonasNew);
+
+console.log("String with \n Multiple \n lines");
+console.log(`String with
+multiple
+lines`);
