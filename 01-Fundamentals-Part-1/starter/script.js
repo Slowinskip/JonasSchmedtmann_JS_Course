@@ -86,7 +86,6 @@ if (birthYear <= 2000) {
   century = 21;
 }
 console.log(century);
-*/
 
 // type conversion
 const inputYear = "1991";
@@ -105,3 +104,53 @@ console.log("23" * "2"); // like +
 let n = "1" + 1;
 n = n - 1;
 console.log(n);
+
+// 5 falsy values: 0, '', undefined, null, NaN
+
+// console.log(Boolean(0));
+// console.log(Boolean(undefined));
+// console.log(Boolean(""));
+// console.log(Boolean(NaN));
+
+// console.log(Boolean("Jonas"));
+// console.log(Boolean({}));
+
+// const money = 1;
+// if (money) {
+//   console.log("Dont spend it all");
+// } else {
+//   console.log("Get job!");
+// }
+
+let height;
+// console.log(height);
+if (height) {
+  console.log("Its ok");
+} else {
+  console.log("Height is undefined");
+}
+
+const age = 18;
+if (age === 18) console.log("18");
+console.log(18 === 18);
+console.log("18" === 18);
+console.log("18" == 18);
+console.log(18 == 18);
+*/
+
+const favourite = Number(prompt("Whats your favourite number?"));
+console.log(favourite);
+
+if (favourite === 23) {
+  console.log("23 is an amazing number");
+} else if (favourite === 7) {
+  console.log("7 is also a cool number");
+} else if (favourite === 9) {
+  console.log("9 is also a cool number");
+} else {
+  console.log("Number is not 23, 7 or 9");
+}
+
+if (favourite !== 23) {
+  console.log("Why not a 23?");
+}
