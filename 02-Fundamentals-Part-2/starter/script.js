@@ -72,7 +72,6 @@ function fruitProcessor(apples, oranges) {
 }
 console.log(fruitProcessor(2, 2));
 
-*/
 const calcAge = function (brithYear) {
   return 2037 - brithYear;
 };
@@ -85,3 +84,43 @@ const yearsUntilRetirement = function (brithYear, firstName) {
   } else return -1;
   //   return `${firstName} retires in ${retirement}`;
 };
+
+
+// const friend1 = "Michael";
+// const friend2 = "Steven";
+// const friend3 = "Peter";
+
+const friends = ["Michael", "Steven", "Peter"];
+
+friends[2] = "Jay";
+const firstName = "Jonas";
+const jonas = [firstName, "Schmedtmann", 2037 - 1991, friends];
+
+const calcAge = function (brithYear) {
+  return 2037 - brithYear;
+};
+
+const years = [1991, 1984, 2008, 2020];
+
+const age1 = calcAge(years[0]);
+console.log(age1);
+
+const ages = [age1];
+console.log(ages);
+*/
+
+const friends = ["Michael", "Steven", "Peter"];
+// const newLength = friends.push("Jay");
+// friends.unshift("John");
+// friends.pop();
+// friends.shift();
+// console.log(friends.indexOf("Steven"));
+// console.log(friends.includes("Steven"));
+// console.log(friends.indexOf("Bob"));
+// console.log(friends.includes("Bob"));
+
+console.log(friends);
+
+if (friends.includes("Peter")) {
+  console.log("You have a friend called Peter");
+}
