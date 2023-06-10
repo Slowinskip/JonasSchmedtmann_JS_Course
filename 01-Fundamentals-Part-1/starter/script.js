@@ -49,7 +49,6 @@ console.log(x, y);
 const averageAge = (jonasAge + saraAge) / 2;
 console.log(averageAge);
 
-*/
 
 const firstName = "Jonas";
 const job = "teacher";
@@ -67,3 +66,42 @@ console.log("String with \n Multiple \n lines");
 console.log(`String with
 multiple
 lines`);
+
+
+const age = 15;
+
+if (age >= 18) {
+  console.log(`Sara can start driving licence`);
+} else {
+  const yearLeft = 18 - age;
+  console.log(`Sara is too young. Wait ${yearLeft} years`);
+}
+
+const birthYear = 1998;
+let century;
+
+if (birthYear <= 2000) {
+  century = 20;
+} else {
+  century = 21;
+}
+console.log(century);
+*/
+
+// type conversion
+const inputYear = "1991";
+console.log(Number(inputYear));
+console.log(Number(inputYear) + 18);
+
+console.log(String(23), 23);
+
+//type coercion
+console.log("I am " + 23 + " years old"); // + automatycznie konwetruje do stringa
+
+console.log("23" - "10" - 3); // - skonwertuje to Number i wykona działanie
+console.log("23" / "2"); // like +
+console.log("23" * "2"); // like +
+
+let n = "1" + 1;
+n = n - 1;
+console.log(n);
