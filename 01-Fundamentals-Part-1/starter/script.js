@@ -136,7 +136,6 @@ console.log(18 === 18);
 console.log("18" === 18);
 console.log("18" == 18);
 console.log(18 == 18);
-*/
 
 const favourite = Number(prompt("Whats your favourite number?"));
 console.log(favourite);
@@ -153,4 +152,26 @@ if (favourite === 23) {
 
 if (favourite !== 23) {
   console.log("Why not a 23?");
+}
+
+*/
+const hasDriversLicence = true;
+const hasGoodVision = true;
+// console.log(hasDriversLicence && hasGoodVision);
+// console.log(hasDriversLicence || hasGoodVision);
+// console.log(!hasGoodVision);
+
+// if (hasDriversLicence && hasGoodVision) {
+//   console.log("Sara is able to drive");
+// } else {
+//   console.log("Someone else shoud drive");
+// }
+
+const isTired = false;
+console.log(hasDriversLicence && hasGoodVision && isTired);
+
+if (hasDriversLicence && hasGoodVision && !isTired) {
+  console.log("Sara is able to drive");
+} else {
+  console.log("Someone else shoud drive");
 }
