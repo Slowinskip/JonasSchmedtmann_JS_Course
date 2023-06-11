@@ -107,7 +107,6 @@ console.log(age1);
 
 const ages = [age1];
 console.log(ages);
-*/
 
 const friends = ["Michael", "Steven", "Peter"];
 // const newLength = friends.push("Jay");
@@ -124,3 +123,92 @@ console.log(friends);
 if (friends.includes("Peter")) {
   console.log("You have a friend called Peter");
 }
+
+const jonasArray = [
+  "Jonas",
+  "Schmedtman",
+  2037 - 1991,
+  "teacher",
+  ["Michal", "Peter", "Steven"],
+];
+
+const jonas = {
+  firstName: "Jonas",
+  lastName: "Schmedtmann",
+  age: 2037 - 1991,
+  job: "teacher",
+  friends: ["Michal", "Peter", "Steven"],
+};
+
+// console.log(jonas);
+// console.log(jonas.lastName);
+// console.log(jonas["lastName"]);
+
+const nameKey = "Name";
+console.log(jonas["first" + nameKey]);
+
+const interested = prompt("What do you want to know about Jonas?");
+console.log(jonas[interested]);
+
+if (jonas[interested]) {
+  console.log(jonas[interested]);
+} else {
+  console.log(`${interested} are wrong request!`);
+}
+
+jonas.location = "Portugal";
+jonas["twitter"] = "@twitter";
+
+const jonas = {
+  firstName: "Jonas",
+  lastName: "Schmedtmann",
+  age: 2037 - 1991,
+  job: "teacher",
+  friends: ["Michal", "Peter", "Steven"],
+};
+
+console.log(
+  `${jonas.firstName} has ${jonas.friends.length} friends, and his best friends is called ${jonas.friends[0]}`
+);
+
+console.log(jonas);
+
+*/
+
+const jonas = {
+  firstName: "Jonas",
+  lastName: "Schmedtmann",
+  birthYear: 1991,
+  job: "teacher",
+  friends: ["Michal", "Peter", "Steven"],
+  hasDriversLicence: false,
+  // calcAge: function () {
+  //   // console.log(this);
+  //   return 2037 - this.birthYear;
+  // },
+  calcAge: function () {
+    this.age = 2037 - this.birthYear;
+    return this.age;
+  },
+  getSummary: function () {
+    return `${this.firstName} is a ${this.calcAge()}-year old ${
+      this.job
+    }, and he ${
+      this.hasDriversLicence
+        ? `has a driver's licence`
+        : `dont hava a driver's licence`
+    }`;
+  },
+};
+// console.log(jonas.calcAge());
+
+// console.log(jonas.age);
+
+// console.log(
+//   `${jonas.firstName} is a ${jonas.age}-year old teacher, and he ${
+//     jonas.hasDriversLicence
+//       ? `has a driver's licence`
+//       : `dont hava a driver's licence`
+//   }`
+// );
+console.log(jonas.getSummary());
