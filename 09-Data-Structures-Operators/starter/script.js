@@ -12,6 +12,10 @@ const restaurant = {
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
+  order: function (starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  },
+
   openingHours: {
     thu: {
       open: 12,
@@ -26,4 +30,176 @@ const restaurant = {
       close: 24,
     },
   },
+  orderDelivery: function ({ starterIndex, mainIndex, time, addres }) {
+    console.log(starterIndex, mainIndex, time, addres);
+  },
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(ing1, ing2, ing3);
+  },
+  orderPizza: function (mainIng, ...otherIng) {
+    console.log(`Main ${mainIng} and other ${otherIng}`);
+  },
 };
+
+const rest1 = {
+  name: `Capri`,
+  numGests: 0,
+};
+
+const rest2 = {
+  name: `Sap`,
+  owner: `Giovani`,
+};
+
+// rest1.numGests = rest1.numGests || 10;
+// rest2.numGests = rest2.numGests || 10;
+
+// rest1.numGests ||= 10;
+// rest2.numGests ||= 10;
+
+rest1.numGests ??= 10;
+rest2.numGests ??= 10;
+
+// rest1.owner = rest1.owner && 'No one';
+// rest2.owner = rest2.owner && 'No one';
+rest1.owner &&= 'No one';
+rest2.owner &&= 'No one';
+
+console.log(rest1);
+console.log(rest2);
+/*
+
+restaurant.orderDelivery({
+  time: `22:30`,
+  addres: `WWa`,
+  mainIndex: 2,
+  starterIndex: 2,
+});
+
+
+const {
+  name: restaurantName,
+  openingHours: hours,
+  categories: tags,
+} = restaurant;
+// console.log(restaurantName, hours, tags);
+
+const { menu = [], starterMenu: starters = [] } = restaurant;
+// console.log(menu, starters);
+
+let a = 111;
+let b = 999;
+const obj = { a: 23, b: 7, c: 14 };
+({ a, b } = obj);
+console.log(a, b);
+
+const {
+  fri: { open, close },
+} = openingHours;
+console.log(open, close);
+
+const arr = [2, 3, 4];
+const a = arr[0];
+const b = arr[1];
+const c = arr[2];
+
+const [q, w, e] = arr;
+console.log(q, w, e);
+console.log(arr);
+
+let [main, , seccond] = restaurant.categories;
+
+// const temp = main;
+// main = seccond;
+// seccond = temp;
+
+[main, seccond] = [seccond, main];
+
+const [starter, mainCourse] = restaurant.order(2, 0);
+console.log(starter, mainCourse);
+
+const nested = [2, 4, [5, 6]];
+// const [i, , x] = nested;
+// console.log(i, x);
+
+const [g, , [n, m]] = nested;
+console.log(g, n, m);
+
+const [p = 1, k = 1, r = 1] = [8, 9];
+console.log(p, k, r);
+const { name, openingHours, categories } = restaurant;
+
+const arr = [7, 8, 9];
+const newArr = [1, 2, ...arr];
+console.log(newArr);
+
+const newMenu = [...restaurant.mainMenu, `Gnocci`];
+console.log(newMenu);
+
+const menu = [...restaurant.mainMenu, ...restaurant.starterMenu];
+console.log(menu);
+
+const str = `Jonas`;
+const letters = [...str, `S`];
+console.log(letters);
+
+// const ingredients = [
+//   prompt(`Lets make pasta, 1?`),
+//   prompt(`Lets make pasta, 2?`),
+//   prompt(`Lets make pasta, 3?`),
+// ];
+console.log(ingredients);
+restaurant.orderPasta(...ingredients);
+
+const arr = [1, 2, ...[3, 4]];
+// console.log(arr);
+
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+// console.log(a, b);
+// console.log(others);
+
+const [pizza, , risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+// console.log(pizza, risotto, otherFood);
+
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(sat, weekdays);
+
+const add = function (...numbers) {
+  console.log(numbers);
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+  }
+  console.log(sum);
+};
+
+add(2, 3);
+add(5, 3, 7, 2);
+
+const x = [23, 5, 7];
+add(...x);
+
+restaurant.orderPizza('olives', `mushrooms`, 'cheese');
+restaurant.orderPizza('olives');
+
+console.log(`Jonas` || 3);
+
+
+console.log(1 && 2 && 3);
+
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('mus', 'spinach');
+}
+
+restaurant.orderPizza && restaurant.orderPizza('muss');
+
+// restaurant.numGuests = 5;
+const guest = restaurant.numGuests || 20;
+console.log(guest);
+
+const guestCorrect = restaurant.numGuests ?? 10;
+console.log(guestCorrect);
+*/
