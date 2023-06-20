@@ -180,7 +180,6 @@ BONUS: Use the 'displayResults' method to display the 2 arrays in the test data.
 
 BONUS TEST DATA 1: [5, 2, 3]
 BONUS TEST DATA 2: [1, 5, 3, 9, 6, 1]
-*/
 
 const poll = {
   question: 'What is your favourite programming language?',
@@ -209,3 +208,26 @@ const poll = {
 document
   .querySelector('.poll')
   .addEventListener('click', poll.registerNewAnswer.bind(poll));
+
+const runOnce = function () {
+  console.log('Only one');
+};
+
+runOnce();
+
+(function () {
+  console.log('This wll never run again');
+})();
+*/
+
+const secureBooking = function () {
+  let passengerCount = 0;
+  return function () {
+    passengerCount++;
+    console.log(passengerCount);
+  };
+};
+const booker = secureBooking();
+booker();
+booker();
+booker();
