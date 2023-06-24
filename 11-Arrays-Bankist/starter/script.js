@@ -91,6 +91,70 @@ currenciesUnique.forEach(function (value, key, map) {
   console.log(map);
 
 });
+
+const dataJulia = [3, 5, 2, 12, 7];
+const dataKate = [4, 1, 15, 8, 3];
+
+// const deleteCat = dataJulia.splice(1);
+// console.log(deleteCat);
+
+// dataJulia.forEach(function (age, i) {
+//   const adult = age > 3 ? 'adult' : 'puppy';
+//   if (adult === 'adult') {
+//     console.log(`Dog number ${i + 1} is an ${adult}, and is ${age} years old`);
+//   } else {
+//     console.log(`Dog number ${i + 1} is still a ${adult}`);
+//   }
+// });
+
+const checkDog = function (dogsJulia, dogsKate) {
+  const dogsJuliaCorrected = dogsJulia.slice();
+  dogsJuliaCorrected.splice(0, 1);
+  dogsJuliaCorrected.splice(-2);
+
+  const dogs = dogsJuliaCorrected.concat(dogsKate);
+
+  dogs.forEach(function (age, i) {
+    const adult = age >= 3 ? 'adult' : 'puppy';
+    if (adult === 'adult') {
+      console.log(
+        `Dog number ${i + 1} is an ${adult}, and is ${age} years old`
+      );
+    } else {
+      console.log(`Dog number ${i + 1} is still a ${adult}`);
+    }
+  });
+};
+checkDog(dataJulia, dataKate);
+
+const eurToUsd = 1.1;
+
+const movementsUSD = account1.movements.map(mov => mov * eurToUsd);
+
+console.log(movementsUSD);
+
+const movementsUSDfor = [];
+for (const mov of account1.movements) {
+  movementsUSDfor.push(mov * eurToUsd);
+}
+console.log(movementsUSDfor);
+
+const movfenetsDescription = account1.movements.map((mov, i, arr) => {
+  if (mov > 0) {
+    console.log(`${i + 1} You deposited ${mov}`);
+  } else {
+    console.log(`${i + 1} You withdrew ${Math.abs(mov)}`);
+  }
+});
+console.log(deposits);
+
+const depositFor = [];
+for (const mov of account1.movements) {
+  if (mov > 0) depositFor.push(mov);
+}
+console.log(depositFor);
+
+
 */
 
 // Data
@@ -167,39 +231,30 @@ const dispayMovements = function (movements) {
 };
 dispayMovements(account1.movements);
 
-//Challenge
-
-const dataJulia = [3, 5, 2, 12, 7];
-const dataKate = [4, 1, 15, 8, 3];
-
-// const deleteCat = dataJulia.splice(1);
-// console.log(deleteCat);
-
-// dataJulia.forEach(function (age, i) {
-//   const adult = age > 3 ? 'adult' : 'puppy';
-//   if (adult === 'adult') {
-//     console.log(`Dog number ${i + 1} is an ${adult}, and is ${age} years old`);
-//   } else {
-//     console.log(`Dog number ${i + 1} is still a ${adult}`);
-//   }
-// });
-
-const checkDog = function (dogsJulia, dogsKate) {
-  const dogsJuliaCorrected = dogsJulia.slice();
-  dogsJuliaCorrected.splice(0, 1);
-  dogsJuliaCorrected.splice(-2);
-
-  const dogs = dogsJuliaCorrected.concat(dogsKate);
-
-  dogs.forEach(function (age, i) {
-    const adult = age >= 3 ? 'adult' : 'puppy';
-    if (adult === 'adult') {
-      console.log(
-        `Dog number ${i + 1} is an ${adult}, and is ${age} years old`
-      );
-    } else {
-      console.log(`Dog number ${i + 1} is still a ${adult}`);
-    }
+const createUserName = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLocaleLowerCase()
+      .split(' ')
+      .map(word => word[0])
+      .join('');
   });
 };
-checkDog(dataJulia, dataKate);
+createUserName(accounts);
+
+const calcPrintBalance = function (movements) {
+  const balance = movements.reduce((acc, cur) => (acc += cur), 0);
+  labelBalance.textContent = `${balance} EUR`;
+};
+calcPrintBalance(account1.movements);
+const deposits = account1.movements.filter(mov => mov > 0);
+const withdraw = account1.movements.filter(mov => mov < 0);
+const balance = account1.movements.reduce((acc, cur) => (acc += cur), 0);
+const max = account1.movements.reduce((acc, cur) => {
+  if (cur > acc) acc = cur;
+  return acc;
+});
+const min = account1.movements.reduce((acc, cur) => {
+  if (cur < acc) acc = cur;
+  return acc;
+}, account1.movements[0]);
