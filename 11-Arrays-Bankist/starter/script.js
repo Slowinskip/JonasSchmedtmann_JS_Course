@@ -155,6 +155,35 @@ for (const mov of account1.movements) {
 console.log(depositFor);
 
 
+const dogAge = [5, 2, 4, 1, 15, 8, 3];
+
+const calcAverageHumanAge = function (dogArr) {
+  const transformateDogAge = dogArr.map(age => {
+    if (age <= 2) {
+      return age * 2;
+    } else if (age > 2) {
+      return 16 + age * 4;
+    }
+  });
+  console.log(transformateDogAge);
+  const adult = transformateDogAge.filter(age => age >= 18);
+  console.log(adult);
+
+  const averageAge = adult.reduce((acc, sur) => (acc += sur)) / adult.length;
+
+  console.log(averageAge);
+};
+console.log(calcAverageHumanAge(dogAge));
+
+const eurToUsd = 1.1;
+
+const totalDepositsUSD = account1.movements
+  .filter(mov => mov > 0)
+  .map(mov => mov * eurToUsd)
+  .reduce((acc, sur) => (acc += sur));
+console.log(totalDepositsUSD);
+
+
 */
 
 // Data
@@ -231,6 +260,26 @@ const dispayMovements = function (movements) {
 };
 dispayMovements(account1.movements);
 
+const calcDisplaySummary = function (movements) {
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, sur) => (acc += sur));
+  labelSumIn.textContent = `${incomes}$`;
+
+  const out = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, sur) => (acc += sur));
+  labelSumOut.textContent = `${Math.abs(out)}$`;
+
+  const insert = movements
+    .filter(mov => mov > 0)
+    .map(deposit => (deposit * 1.2) / 100)
+    .filter(int => int >= 1)
+    .reduce((acc, sur) => (acc += sur));
+  labelSumInterest.textContent = `${insert}$`;
+};
+calcDisplaySummary(account1.movements);
+
 const createUserName = function (accs) {
   accs.forEach(function (acc) {
     acc.username = acc.owner
@@ -246,7 +295,10 @@ const calcPrintBalance = function (movements) {
   const balance = movements.reduce((acc, cur) => (acc += cur), 0);
   labelBalance.textContent = `${balance} EUR`;
 };
+
 calcPrintBalance(account1.movements);
+
+//
 const deposits = account1.movements.filter(mov => mov > 0);
 const withdraw = account1.movements.filter(mov => mov < 0);
 const balance = account1.movements.reduce((acc, cur) => (acc += cur), 0);
@@ -258,3 +310,15 @@ const min = account1.movements.reduce((acc, cur) => {
   if (cur < acc) acc = cur;
   return acc;
 }, account1.movements[0]);
+//
+
+const dogAge = [5, 2, 4, 1, 15, 8, 3];
+
+const calcAverageHumanAge = function (dogArr) {
+  const transformateDogAge = dogArr
+    .map(age => (age <= 2 ? age * 2 : 16 + age * 4))
+    .filter(age => age >= 18)
+    .reduce((acc, sur, i, arr) => acc + sur / arr.length, 0);
+  return transformateDogAge;
+};
+console.log(calcAverageHumanAge(dogAge));
