@@ -211,6 +211,28 @@ const min = account1.movements.reduce((acc, cur) => {
 const anyDeposits = account1.movements.some(mov => mov > 1000);
 console.log(anyDeposits);
 
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(arr.flat());
+
+const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+console.log(arrDeep.flat(2));
+
+const balance = accounts
+  .map(acc => acc.movements)
+  .flat()
+  .reduce((acc, sur) => (acc += sur), 0);
+console.log(balance);
+
+const balance2 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((acc, sur) => (acc += sur), 0);
+console.log(balance2);
+
+const owners = ['Jonas', 'Zac', 'Adam', 'Marta'];
+console.log(owners.sort());
+
+const number = [100, 5, 3, 20];
+console.log(number.sort((a, b) => a - b));
 
 */
 
@@ -271,9 +293,10 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const dispayMovements = function (movements) {
+const dispayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
-  movements.forEach(function (mov, i) {
+  const movSort = sort ? movements.slice().sort((a, b) => a - b) : movements;
+  movSort.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const html = `
@@ -395,7 +418,13 @@ btnLogin.addEventListener('click', function (e) {
         inputCloseUsername.value = inputClosePin.value = '';
       }
     });
+
+    let sorted = false;
+
+    btnSort.addEventListener('click', function (e) {
+      e.preventDefault();
+      dispayMovements(currentAccount.movements, !sorted);
+      sorted = !sorted;
+    });
   }
 });
-
-console.log(account1.movements.every(mov => mov > 0));
