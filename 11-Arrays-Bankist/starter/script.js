@@ -206,6 +206,10 @@ const min = account1.movements.reduce((acc, cur) => {
   return acc;
 }, account1.movements[0]);
 //
+// console.log(account1.movements.includes(-130));
+
+const anyDeposits = account1.movements.some(mov => mov > 1000);
+console.log(anyDeposits);
 
 
 */
@@ -361,5 +365,37 @@ btnLogin.addEventListener('click', function (e) {
         updateUI(currentAccount);
       }
     });
+
+    btnLoan.addEventListener('click', function (e) {
+      e.preventDefault();
+      const amount = Number(inputLoanAmount.value);
+      if (
+        amount > 0 &&
+        currentAccount.movements.some(mov => mov >= amount * 0.1)
+      ) {
+        currentAccount.movements.push(amount);
+        updateUI(currentAccount);
+        inputLoanAmount.value = '';
+      }
+    });
+
+    btnClose.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      if (
+        currentAccount.username === inputCloseUsername.value &&
+        currentAccount.pin === Number(inputClosePin.value)
+      ) {
+        const index = accounts.findIndex(
+          acc => acc.username === currentAccount.username
+        );
+        accounts.splice(index, 1);
+        containerApp.style.opacity = 0;
+        labelWelcome.textContent = `Log in to get started`;
+        inputCloseUsername.value = inputClosePin.value = '';
+      }
+    });
   }
 });
+
+console.log(account1.movements.every(mov => mov > 0));
