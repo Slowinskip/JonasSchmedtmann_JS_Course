@@ -475,6 +475,7 @@ HINT 1: Use many different tools to solve these challenges, you can use the summ
 HINT 2: Being within a range 10% above and below the recommended portion means: current > (recommended * 0.90) && current < (recommended * 1.10). 
 Basically, the current portion should be between 90% and 110% of the recommended portion.
 GOOD LUCK 😀
+*/
 
 const dogs = [
   { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
@@ -482,32 +483,49 @@ const dogs = [
   { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
   { weight: 32, curFood: 340, owners: ['Michael'] },
 ];
-
 // 1
 const recommendedFood = dogs.forEach(function (dog) {
-  dog.recommendedFood = (dog.weight * 0.75 * 28) / 1000;
+  dog.recommendedFood = Math.trunc(dog.weight ** 0.75 * 28);
 });
 
 // 2
-const saraDog = function (dogs) {
-  const sara = dogs.map(dog => dog.owners).filter(i => i === 'Sarah');
-  return sara;
-};
-console.log(saraDog(dogs));
+const saraDog = dogs.find(dog => dog.owners.includes('Sarah'));
+console.log(
+  saraDog.curFood > saraDog.recommendedFood
+    ? 'Sara dog eats to more'
+    : 'Sara dog eats to less'
+);
 
 // 3
-const ownersEatTooMuch = [];
-const ownersEatTooLittle = [];
+const ownersEatTooMuch = dogs
+  .filter(dog => dog.curFood > dog.recommendedFood)
+  .map(dog => dog.owners)
+  .flat();
+const ownersEatTooLittle = dogs
+  .filter(dog => dog.curFood < dog.recommendedFood)
+  .map(dog => dog.owners)
+  .flat();
 
-dogs.forEach(function (dog) {
-  if (dog.curFood / 1000 > dog.recommendedFood) {
-    ownersEatTooMuch.push(dog.owners);
-  } else {
-    ownersEatTooLittle.push(dog.owners);
-  }
-});
+//4
+console.log(`${ownersEatTooMuch.join(' and ')} dogs eat to much!`);
+console.log(`${ownersEatTooLittle.join(' and ')} dogs eat to much!`);
+
+//5
+console.log(dogs.some(dog => dog.curFood === dog.recommendedFood));
+
+//6
+// current > (recommended * 0.90) && current < (recommended * 1.10)
+const checkEatingOkay = dog =>
+  dog.curFood > dog.recommendedFood * 0.9 &&
+  dog.curFood < dog.recommendedFood * 1.1;
+
+console.log(dogs.some(checkEatingOkay));
+
+//7
+console.log(dogs.filter(checkEatingOkay));
 
 //8
-const sortDogs = dogs.slice('');
+const sortDogs = dogs
+  .slice('')
+  .sort((a, b) => a.recommendedFood - b.recommendedFood);
 console.log(sortDogs);
-*/
