@@ -287,4 +287,58 @@ console.log(Math.trunc(-23.9));
 console.log(Math.floor(Math.random() * 6) + 1);
 
 console.log((2.789).toFixed(2));
+
+console.log(5 % 2);
+console.log(5 / 2);
+console.log(8 % 3);
+console.log(8 / 3);
+console.log(10 % 2);
+console.log(7 % 2);
+
+const isEven = n => n % 2 === 0;
+console.log(isEven(5));
+console.log(isEven(6));
+
+labelBalance.addEventListener('click', function () {
+  [...document.querySelectorAll('.movements__row')].forEach(function (row, i) {
+    if (i % 2 === 0) row.style.backgroundColor = 'orangered';
+    if (i % 3 === 0) row.style.backgroundColor = 'blue';
+  });
+});
+//287,460,000,000
+const diameter = 287_460_000_000;
+console.log(diameter);
+
+const priceCents = 345_99;
+console.log(priceCents);
+
+const tranferFee = 15_00;
+const tranferFee2 = 1_500;
+console.log(tranferFee, tranferFee2);
+
+const PI = 3.1415;
+console.log(PI);
+
+console.log(parseInt('230_000'));
 */
+
+console.log(2 ** 53 - 1);
+console.log(Number.MAX_SAFE_INTEGER);
+
+console.log(432423423482374982374293470012938740238947n + 1n);
+console.log(BigInt(432423423482));
+
+console.log(10000n + 10000n);
+
+const huge = 48972047091247012478294790n;
+const num = 23;
+console.log(huge * BigInt(num));
+
+console.log(20n > 15);
+console.log(20n === 20);
+console.log(20n == 20);
+console.log(typeof 20n);
+
+console.log(huge + ' is rly big!');
+
+console.log(10n / 3n);
