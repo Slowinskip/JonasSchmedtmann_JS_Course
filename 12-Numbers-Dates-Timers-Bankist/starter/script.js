@@ -192,12 +192,33 @@ const updateUI = function (acc) {
 
 ///////////////////////////////////////
 // Event handlers
-let currentAccount;
+const startLogOutTimer = function () {
+  const tick = function () {
+    const min = String(Math.trunc(time / 60)).padStart(2, '0');
+    const sec = String(time % 60).padStart(2, '0');
+    labelTimer.textContent = `${min}:${sec}`;
+
+    if (time === 0) {
+      clearInterval(loginInterval);
+      labelWelcome.textContent = 'Log in to get started';
+      containerApp.style.opacity = 0;
+    }
+    time--;
+  };
+
+  let time = 300;
+  tick();
+
+  const loginInterval = setInterval(tick, 1000);
+  return loginInterval;
+};
+
+let currentAccount, loginTimer;
 
 //Fake login
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 100;
+// currentAccount = account1;
+// updateUI(currentAccount);
+// containerApp.style.opacity = 100;
 
 //Experimenting AIP
 
@@ -242,6 +263,9 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
+    if (loginTimer) clearInterval(loginTimer);
+    loginTimer = startLogOutTimer();
+
     // Update UI
     updateUI(currentAccount);
   }
@@ -269,6 +293,9 @@ btnTransfer.addEventListener('click', function (e) {
 
     // Update UI
     updateUI(currentAccount);
+
+    clearInterval(loginTimer);
+    loginTimer = startLogOutTimer();
   }
 });
 
@@ -278,12 +305,16 @@ btnLoan.addEventListener('click', function (e) {
   const amount = Math.floor(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
-    // Add movement
-    currentAccount.movements.push(amount);
-    currentAccount.movementsDates.push(new Date().toISOString());
+    setTimeout(function () {
+      // Add movement
+      currentAccount.movements.push(amount);
+      currentAccount.movementsDates.push(new Date().toISOString());
 
-    // Update UI
-    updateUI(currentAccount);
+      // Update UI
+      updateUI(currentAccount);
+      clearInterval(loginTimer);
+      loginTimer = startLogOutTimer();
+    }, 2000);
   }
   inputLoanAmount.value = '';
 });
@@ -464,3 +495,27 @@ console.log(days1);
 // console.log(
 //   'Local: ' + new Intl.NumberFormat(navigator.language, options).format(num)
 // );
+
+// const ingredients = ['olives', 'spinach'];
+// const pizzaTimer = setTimeout(
+//   (ing1, ing2) => {
+//     console.log(`Here is your pizza with ${ing1} and ${ing2}`);
+//   },
+//   3000,
+//   ...ingredients
+// );
+
+// if (ingredients.includes('spinach')) clearTimeout(pizzaTimer);
+
+// setTimeout(function () {
+//   const now = new Date();
+//   console.log(now);
+// }, 1000);
+
+// setInterval(function () {
+//   const now = new Date();
+//   const hour = now.getHours();
+//   const minute = now.getMinutes();
+//   const sec = now.getSeconds();
+//   console.log(`Time: ${hour}:${minute}:${sec}`);
+// }, 1000);
