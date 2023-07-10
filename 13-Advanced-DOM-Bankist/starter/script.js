@@ -30,6 +30,13 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', function (e) {
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
+
 /*
 // Selectiong elements
 // console.log(document.documentElement);
@@ -114,4 +121,37 @@ logo.classList.add('c');
 logo.classList.remove('c');
 logo.classList.toggle('c');
 logo.classList.contains('c');
+\
+  // console.log(s1coords);
+  // console.log(e.target.getBoundingClientRect());
+  // console.log('Current scroll (X/Y)', window.pageXOffset, window.pageYOffset);
+  // console.log(
+  //   `height/width ` + document.documentElement.clientHeight,
+  //   document.documentElement.clientWidth
+  // );
+  // window.scrollTo(
+  //   s1coords.left + window.pageXOffset,
+  //   s1coords.top + window.pageYOffset
+  // );
+
+  // window.scrollTo({
+  //   left: s1coords.left + window.pageXOffset,
+  //   top: s1coords.top + window.pageYOffset,
+  //   behavior: 'smooth',
+  // });
+
   */
+
+const h1 = document.querySelector('h1');
+
+const alertH1 = function (e) {
+  alert('addEventListner');
+
+  setTimeout(() => {
+    h1.removeEventListener('mouseenter', alertH1);
+  }, 3000);
+};
+h1.addEventListener('mouseenter', alertH1);
+// h1.onmouseenter = function (e) {
+//   alert('addEventListner');
+// };
